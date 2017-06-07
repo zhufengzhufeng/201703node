@@ -47,8 +47,11 @@ for(let val of Object.keys(arrs)){
     console.log(arrs[val]);
 }
 //Object.keys 对象有几个属性
-let school = {name:1,age:2,add:3}
+let school = {name:1,age:2,add:3};
 if(Object.keys(school).length===3){
 
 }
+//[[1,2,3],[4,5],[7,7]] => [1,2,3,4,5,7,7] 展开运算符
+let newArrs = [[1,2,3],[4,5],[7,7]].reduce((prev,next)=>[...prev,...next]);
+console.log(newArrs);
 

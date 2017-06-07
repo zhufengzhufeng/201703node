@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <!--input的特点 可以展现数据 可以修改数据-->
+    <!--v-model 只能绑定变量 先将对应的数据 放到输入框的value值上-->
+    <!--v-model 会监听输入框的输入事件 oninput ,将值放回到数据中-->
+    <input type="text" v-model="msg">
+    <!--被v-once包住的属性 就不会再发生变化-->
+    <div v-once>{{msg}}</div>
+    <!--绑定html元素-->
+    <div v-html="msg"></div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'<h1>hello</h1>'
+        }
+    });
+</script>
+</body>
+</html>

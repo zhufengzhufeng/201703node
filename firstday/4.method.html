@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <!--默认的onClick会带一层函数 这个函数中 写的内容是 你写的东西 如果只写一个a 则没变化，写了a()才会调用a函数-->
+    <!--函数执行时 带括号 一般是传递参数，会丢失event源，可以手动传递属性$event-->
+    <!--v-on在事件中可以简写成@符号-->
+    <button @click="a($event)">点我啊</button>
+    <!--写一个输入框 在这个输入框中写入内容，当点击回车时 弹出输入框的内容-->
+    <input type="text" @keyup="fn" v-model="msg">
+</div>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+          msg:1
+        },
+        //function
+        methods:{ //放所有函数
+            a(e){ //写普通函数
+                console.log(e);
+                //函数中的this指向的都是vm
+            },
+            fn(e){
+                if(e.keyCode == 13) alert(this.msg)
+            }
+        }
+    });
+</script>
+</body>
+</html>

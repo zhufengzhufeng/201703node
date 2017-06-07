@@ -34,15 +34,15 @@
             <form>
                 <div class="form-group">
                     <label for="productName" class="control-label">商品名称</label>
-                    <input type="text" id="productName" class="form-control" placeholder="请输入商品名称" v-model="productName">
+                    <input type="text" id="productName" class="form-control" placeholder="请输入商品名称" v-model="productName" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <label for="productPrice" class="control-label">商品价格</label>
-                    <input type="text" id="productPrice" class="form-control" placeholder="请输入价格" v-model="productPrice">
+                    <input type="text" id="productPrice" class="form-control" placeholder="请输入价格" v-model="productPrice" autocomplete="off">
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary" @click="add" type="button">添加</button>
-                    <button class="btn btn-warning">重置</button>
+                    <button class="btn btn-warning" type="button" @click="reset">重置</button>
                 </div>
             </form>
         </div>
@@ -85,7 +85,12 @@
                     count:1
                 };
                 this.products.push(product);
-            }
+                this.reset();
+            },
+            reset(){
+                this.productName=this.productPrice = '';
+            },
+
         }
     })
 </script>

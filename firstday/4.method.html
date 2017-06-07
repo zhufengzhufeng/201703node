@@ -11,7 +11,7 @@
     <!--v-on在事件中可以简写成@符号-->
     <button @click="a($event)">点我啊</button>
     <!--写一个输入框 在这个输入框中写入内容，当点击回车时 弹出输入框的内容-->
-    <input type="text" @keyup="fn" v-model="msg">
+    <input type="text" @keyup.13="fn" v-model="msg">
 </div>
 
 <script src="node_modules/vue/dist/vue.js"></script>
@@ -27,8 +27,8 @@
                 console.log(e);
                 //函数中的this指向的都是vm
             },
-            fn(e){
-                if(e.keyCode == 13) alert(this.msg)
+            fn(){
+               alert(this.msg)
             }
         }
     });

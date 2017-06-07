@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--阻止默认事件-->
+<!--阻止事件冒泡-->
+<!--事件捕获-->
+<div id="app">
+    <!--默认事件时冒泡的 .stop.xxx.xxx修饰符-->
+    <!--capture捕获-->
+    <!--self 只在自己身上触发-->
+    <!--once只触发一次-->
+    <!--prevent只触发一次-->
+    <!--键盘修饰符 @keyup / @keydown-->
+    <a href="http://www.baidu.com" @click.prevent.stop="son">go bd</a>
+    <div @click="parent">
+        父亲
+        <div @click.once="son">
+            儿子
+            <div @click="grandson">
+                孙子
+            </div>
+        </div>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        methods:{
+            parent(){
+                alert('父亲')
+            },
+            son(){
+                alert('儿子')
+            },
+            grandson(){
+                alert('孙子');
+               //e.cancelBubble = true
+               //e.stopPropagation();
+            }
+        }
+    })
+</script>
+</body>
+</html>

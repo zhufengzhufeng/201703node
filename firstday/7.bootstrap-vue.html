@@ -46,6 +46,20 @@
         </div>
     </div>
 </div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'.container',
+        data:{
+            //1.将数据渲染到页面上
+            products:[{name:'狗',price:300,count:1},{name:'猫',price:200,count:2},{name:'猪',price:1800,count:1}]
+        },
+        methods:{
+            //2.点击删除按钮,点击时将这条数据 传递过来，做过滤
 
+            //3.函数 {{sum()}} 求 价格和数量的总和 reduce
+        }
+    })
+</script>
 </body>
 </html>

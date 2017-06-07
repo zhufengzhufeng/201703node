@@ -34,14 +34,14 @@
             <form>
                 <div class="form-group">
                     <label for="productName" class="control-label">商品名称</label>
-                    <input type="text" id="productName" class="form-control" placeholder="请输入商品名称">
+                    <input type="text" id="productName" class="form-control" placeholder="请输入商品名称" v-model="productName">
                 </div>
                 <div class="form-group">
                     <label for="productPrice" class="control-label">商品价格</label>
-                    <input type="text" id="productPrice" class="form-control" placeholder="请输入价格">
+                    <input type="text" id="productPrice" class="form-control" placeholder="请输入价格" v-model="productPrice">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary">添加</button>
+                    <button class="btn btn-primary" @click="add" type="button">添加</button>
                     <button class="btn btn-warning">重置</button>
                 </div>
             </form>
@@ -58,7 +58,9 @@
                 {name:'狗',price:300,count:1},
                 {name:'猫',price:200,count:2},
                 {name:'猪',price:1800,count:1}
-            ]
+            ],
+            productName:'',
+            productPrice:'',
         },
         methods:{
             //2.点击删除按钮,点击时将这条数据 传递过来，做过滤
@@ -70,13 +72,20 @@
             //3.函数 {{sum()}} 求 价格和数量的总和 reduce
             sum(){
                 //reduce叠加结果
-                return
+                return this.products.reduce(function (prev,next) {
+                    return prev+next.price*next.count;
+                },0);//插入在数组的第一项了
             },
             //4.add增加
             add(){
               //获取两个输入框中的内容，将内容插入到数组中
+                let product = {
+                    name: this.productName,
+                    price:this.productPrice,
+                    count:1
+                };
+                this.products.push(product);
             }
-
         }
     })
 </script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="fruit">
+    <button @click="addFruit">添加水果</button>
+    <ul>
+        <li v-for="val in fruits">{{val}}</li>
+    </ul>
+    <!--提示 当水果种类大于8种的时候 提示太多了-->
+    <!--提示 当水果种类大于5种小于8种提示的时候 提示还可以-->
+    <!--提示 当水果种类其他时提示 提示太少-->
+    <!--操作的是dom的移除 和新增 v-if操作的是结构-->
+    <!--v-show不满足条件 操作的是样式-->
+    <div v-show="fruits.length<5">太少了</div>
+    <div v-show="fruits.length>=5&&fruits.length<=8">还可以</div>
+    <div v-show="fruits.length>8">太多了</div>
+    <!--什么时候使用v-if 有阻断作用，当外面的条件不满足时，内部代码不在执行 什么时候使用v-show 频繁显示隐藏 选择v-show-->
+    <div v-if="false">
+        <ul>
+            <li v-for="val in fruits">{{val}}</li>
+        </ul>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{ //data里的属性 和 methods 名字不能重复，可能会被覆盖掉
+            fruits:['香蕉','苹果','橘子'],
+            fruit:''
+        },
+        methods:{ //是一个数据驱动，操作的是数据，数据改变视图刷新
+            addFruit(){
+                this.fruits.push(this.fruit);
+            }
+        }
+    })
+</script>
+</body>
+</html>

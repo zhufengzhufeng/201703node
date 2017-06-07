@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .color{
+            color:red
+        }
+        .background{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <!--如果想将内容绑定在标签上 需要使用: 不能是用{{}}-->
+    <div :title="title">
+        我很帅
+    </div>
+    <img :src="src" alt="" :width="width" :height="width">
+    <!-- style 比较特殊 绑定对象的方式 数组的方式-->
+    <div :style="[s1,s2]">vue</div>
+    <div :style="s1">vue</div>
+    <!-- class 绑定对象和数组 -->
+
+    <div :class="['color','background',{'back':true}]">react</div>
+    <div :class="{'color':true,'background':true}" class="a">angular</div>
+    <!--:绑定的class 和原生的不冲突  如果冲突:号会覆盖普通的class-->
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+          title:'标题',
+          s1:{background:'red'},
+          s2:{color:'blue'},
+          src:'http://blog.fullstackjavascript.cn/static/upload/20170605/logo.jpg',          width:'100px',
+          height:'200px'
+        },
+        methods:{
+
+        }
+    })
+</script>
+</body>
+</html>

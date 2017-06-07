@@ -11,21 +11,19 @@
         <li v-for="(val,index) of fruits">{{index+1}}{{val}}</li>
     </ul>-->
     <ul>
-        <li>香蕉
+        <li v-for="(fruit,pindex) in fruits">
+            {{fruit.name}}
             <ul>
-                <li>1.1绿色</li>
-                <li>1.2黄色</li>
+                <li v-for="(c,index) in fruit.color">{{pindex}}.{{index}}{{c}}</li>
             </ul>
         </li>
-        <li>苹果
-            <ul>
-                <li>2.1红色</li>
-                <li>2.2黄色</li>
-                <li>2.2青色</li>
-            </ul>
-        </li>
-        <li>西瓜</li>
     </ul>
+    <ul>
+        <li v-for="(f,key) in fruit">{{f}} {{key}}</li>
+    </ul>
+    <!--数组中a in xxx ,那么a的值是 数组里的value-->
+    <!--对象中f in xxx ,那么f的值是 对象里的value-->
+    <!--(value,key) in xxx-->
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>
@@ -33,7 +31,12 @@
         el:'#app',
         data:{
             //fruits:['香蕉','苹果','西瓜','荔枝']
-            fruits:[{name:'香蕉',color:['绿色','黄色']},{name:'苹果',color:['红色','黄色','青色']},{name:'西瓜',color:['黄色']}]
+            fruit: {name:'香蕉',color:['绿色','黄色']},
+            fruits:[
+                {name:'香蕉',color:['绿色','黄色']},
+                {name:'苹果',color:['红色','黄色','青色']},
+                {name:'西瓜',color:['黄色']}
+            ]
         }
     })
 </script>

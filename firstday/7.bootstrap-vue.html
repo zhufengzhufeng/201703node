@@ -19,14 +19,16 @@
                     <th>商品数量</th>
                     <th>操作</th>
                 </tr>
-                <tr>
-                    <td>狗</td>
-                    <td>300</td>
-                    <td><input type="text"></td>
-                    <td><button class="btn btn-danger btn-xs">删除</button></td>
+                <tr v-for="product in products">
+                    <!-- {name:'狗',price:300,count:1},-->
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td><input type="text" v-model="product.count"></td>
+                    <td><button class="btn btn-danger btn-xs" @click="remove(product)">删除</button></td>
                 </tr>
                 <tr>
-                    <td colspan="4">总价</td>
+                    <!--{{sum()}} 性能低 只要有人一个数据变化，和sum没关系，也会重新执行-->
+                    <td colspan="4">总价 {{sum()}}</td>
                 </tr>
             </table>
             <form>
@@ -52,12 +54,29 @@
         el:'.container',
         data:{
             //1.将数据渲染到页面上
-            products:[{name:'狗',price:300,count:1},{name:'猫',price:200,count:2},{name:'猪',price:1800,count:1}]
+            products:[
+                {name:'狗',price:300,count:1},
+                {name:'猫',price:200,count:2},
+                {name:'猪',price:1800,count:1}
+            ]
         },
         methods:{
             //2.点击删除按钮,点击时将这条数据 传递过来，做过滤
-
+            remove(product){
+                this.products = this.products.filter(function (item) { //返回false表示移除掉
+                    return item!==product;
+                });
+            },
             //3.函数 {{sum()}} 求 价格和数量的总和 reduce
+            sum(){
+                //reduce叠加结果
+                return
+            },
+            //4.add增加
+            add(){
+              //获取两个输入框中的内容，将内容插入到数组中
+            }
+
         }
     })
 </script>

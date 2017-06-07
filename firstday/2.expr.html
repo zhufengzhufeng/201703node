@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--v- 代表的是指令-->
+    <!--用大括号会导致闪烁问题 v-text -->
+    <div v-text="msg?true:false"></div>
+    <!--1.可以放三元表达式-->
+    <!--2.可以赋值-->
+    <!--3.最终的结果需要有返回值-->
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //Vue的实例可以创建多个 但是正常情况下只有一个
+    let vm = new Vue({
+        el:'#app',
+        data:{//数据类型  boolean number string undefined null object array function
+            msg:'hello'
+        }
+    });
+</script>
+</body>
+</html>

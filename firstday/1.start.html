@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--小胡子语法 取值表达式 -->
+    {{msg}} {{age}}
+</div>
+<script src="./node_modules/vue/dist/vue.js"></script>
+<script>
+    // 一段落json + 一块html即可
+    //引用vue 可以提供一个Vue的构造函数
+    //用之前先声明 在使用，不能新增不存在的属性, Object.defineProperty,vue不兼容ie8以下版本包括ie8
+    let obj = {msg:'hello world',age:0};
+    let vm = new Vue({
+        el:'#app', //el指定的元素不能是html 或者body,querySelector
+        data:obj
+    });
+    obj.age = 100;
+    //vm可以代理data属性
+    console.log(vm.name);
+</script>
+</body>
+</html>

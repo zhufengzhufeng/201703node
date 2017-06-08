@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <div class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">TodoList</a>
+            </div>
+            <!--下面可以放置导航-->
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-danger">亲 ，您还有 xxx 事要完成</h3>
+                <input type="text" class="form-control" placeholder="请输入要添加的事项">
+                <ul class="nav nav-pills" style="margin: 10px 0">
+                    <li class="active"><a href="">全部完成</a></li>
+                    <li><a href="">已完成</a></li>
+                    <li><a href="">未完成</a></li>
+                </ul>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <input type="checkbox">
+                        今天晚上回去早点睡觉
+                        <button class="btn btn-danger pull-right btn-xs">&times;</button>
+                    </li>
+                    <li class="list-group-item">
+                        <input type="checkbox">
+                        今天晚上回去早点睡觉
+                        <button class="btn btn-danger pull-right btn-xs">&times;</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

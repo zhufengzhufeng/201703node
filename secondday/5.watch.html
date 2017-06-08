@@ -15,16 +15,16 @@
         el:'#app',
         data:{
             query:'',
-            result:''
+            //result:''
         },
-        /*computed:{
+       computed:{
             result(){
                 setTimeout( () =>{
                     return '新结果'
                 },2000);
                 return "搜索结果"
             }
-        },*/
+        },
         watch:{ //如果很简单的事 可以用watch ,computed不支持异步，watch支持异步
             /*query(){ //输入时 先等待1s 在显示结果
                 setTimeout(()=>{

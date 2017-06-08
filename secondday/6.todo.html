@@ -28,12 +28,18 @@
                     <li :class="{active:hash=='finish'}"><a href="#finish">已完成</a></li>
                     <li :class="{active:hash=='unfinish'}"><a href="#unfinish">未完成</a></li>
                 </ul>
+
                 <ul class="list-group">
                     <!--del可以 让当前项变灰 ,如果当前为点击状态则生效-->
-                    <li class="list-group-item" v-for="todo in lists" :class="{del:todo.isSelected}">
-                        <input type="checkbox" v-model="todo.isSelected">
-                        {{todo.title}}
-                        <button class="btn btn-danger pull-right btn-xs"  @click="remove(todo)">&times;</button>
+                    <li class="list-group-item" v-for="todo in lists" :class="{del:todo.isSelected}" @dblclick="change(todo)">
+                        <!--同一时间 只能显示一个 先要知道点击的是哪一个-->
+                        <div v-show="todo!=t">
+                            <input type="checkbox" v-model="todo.isSelected">
+                            {{todo.title}}
+                            <button class="btn btn-danger pull-right btn-xs"  @click="remove(todo)">&times;</button>
+                        </div>
+                        <!--自动获取焦点的功能-->
+                        <input type="text" v-show="todo==t" v-model="todo.title" @keyup.13="reset" @blur="reset">
                     </li>
                 </ul>
             </div>

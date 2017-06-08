@@ -5,7 +5,8 @@ let vm = new Vue({
             {isSelected:true,title:'晚上回去睡觉'}
         ],
         hash:'complete',//路径切换时 获取的hash值
-        todo:''// 输入框中需要增加的内容
+        todo:'',// 输入框中需要增加的内容,
+        t:''//当前点击的那一个
     },
     methods:{
         addTodo(){
@@ -15,6 +16,13 @@ let vm = new Vue({
         },
         remove(todo){
             this.todos = this.todos.filter(item=>todo!==item);
+        },
+        change(todo){
+            //todo代表的是我当前点击的是哪一个，存储当前点击的这一项
+            this.t = todo;
+        },
+        reset(){
+            this.t = '';
         }
     },
     computed:{

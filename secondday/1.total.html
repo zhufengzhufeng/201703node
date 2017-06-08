@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    价格 ：{{price}} <br>
+    姓名 ：<input type="text" v-model="name">
+    数量 ：<input type="text" v-model="count">
+    <!--只要页面上有任意一个数据 刷新 都会导致sum重新执行 ,不要再{{}}直接让函数执行-->
+    <!--computed 计算属性 不能和data，methods的名字冲突-->
+    {{sum}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            price:30,
+            name:'我很帅',
+            count:1
+        },
+        //如果有需要写成{{sum()}} 一定用computed代替
+        computed:{
+            // 属性由两部分组成 set  get
+            sum:{ //sum虽然写成函数类型 但是依然是一个属性
+                get(){
+                    return this.price*this.count;//根据price和count计算来的
+                },
+                set(val){//设置sum的值
+                    console.log(val); //在set中可以去影响其他值的改变
+                    this.name = val;
+                }
+            },
+           /*sum(){  //这样写 默认调用了 get方法
+                return this.price*this.count;
+            }*/
+        },
+    })
+</script>
+</body>
+</html>

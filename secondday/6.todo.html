@@ -38,8 +38,8 @@
                             {{todo.title}}
                             <button class="btn btn-danger pull-right btn-xs"  @click="remove(todo)">&times;</button>
                         </div>
-                        <!--自动获取焦点的功能-->
-                        <input type="text" v-show="todo==t" v-model="todo.title" @keyup.13="reset" @blur="reset">
+                        <!--自动获取焦点的功能 ，有且只能有一个输入框获取焦点-->
+                        <input type="text" v-show="todo==t" v-model="todo.title" @keyup.13="reset" @blur="reset" v-auto-focus="todo==t">
                     </li>
                 </ul>
             </div>

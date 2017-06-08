@@ -43,7 +43,17 @@ let vm = new Vue({
             return this.todos.filter(item=>!item.isSelected).length;
         }
     },
+    directives:{ //指令
+        autoFocus(el,bindings){
+            //bindings中有一个value属性 代表的是指令对应的值v-auto-focus="值"
+            if(bindings.value){
+                el.focus();
+            }
+            //console.log(el,bindings);
+        }
+    }
 });
+
 let listener = () => {
     let hash = window.location.hash.slice(1) || 'complete'; //如果打开页面没有hash默认是全部
     vm.hash = hash;

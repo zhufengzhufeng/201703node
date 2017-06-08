@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style>
+        .del{text-decoration: line-through;color:#ccc}
+    </style>
 </head>
 <body>
 <div id="app">
@@ -18,28 +21,27 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-danger">亲 ，您还有 xxx 事要完成</h3>
-                <input type="text" class="form-control" placeholder="请输入要添加的事项">
+                <h3 class="text-danger">亲 ，您还有 {{total}} 事要完成</h3>
+                <input type="text" class="form-control" placeholder="请输入要添加的事项" v-model="todo" @keyup.enter="addTodo">
                 <ul class="nav nav-pills" style="margin: 10px 0">
                     <li class="active"><a href="">全部完成</a></li>
                     <li><a href="">已完成</a></li>
                     <li><a href="">未完成</a></li>
                 </ul>
                 <ul class="list-group">
-                    <li class="list-group-item">
-                        <input type="checkbox">
-                        今天晚上回去早点睡觉
+                    <!--del可以 让当前项变灰 -->
+                    <li class="list-group-item" v-for="todo in todos">
+                        <input type="checkbox" v-model="todo.isSelected">
+                        {{todo.title}}
                         <button class="btn btn-danger pull-right btn-xs">&times;</button>
                     </li>
-                    <li class="list-group-item">
-                        <input type="checkbox">
-                        今天晚上回去早点睡觉
-                        <button class="btn btn-danger pull-right btn-xs">&times;</button>
-                    </li>
+
                 </ul>
             </div>
         </div>
     </div>
 </div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="todo.js"></script>
 </body>
 </html>

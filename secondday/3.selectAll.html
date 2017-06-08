@@ -20,10 +20,11 @@
         computed:{  //computed不是函数 是属性
             all:{
                 get(){
-                    //如果有false，返回的是true但是全选状态为false                                                             // 如果返回true 说明找到false
+                   //如果有false，返回的是true但是全选状态为false                                                    // 如果返回true 说明找到false
                    return !this.checks.some(item=>!item.isSelect);
+                   //如果有一个为true ，不再执行了。
                 },
-                set(val){
+                set(val){ //根据点击时checkbox的值
                     this.checks.forEach(item=>item.isSelect=val);
                 }
             }

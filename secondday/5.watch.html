@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" v-model="query">
+    {{result}}
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            query:'',
+            result:''
+        },
+        /*computed:{
+            result(){
+                setTimeout( () =>{
+                    return '新结果'
+                },2000);
+                return "搜索结果"
+            }
+        },*/
+        watch:{ //如果很简单的事 可以用watch ,computed不支持异步，watch支持异步
+            /*query(){ //输入时 先等待1s 在显示结果
+                setTimeout(()=>{
+                    this.result="搜索结果"
+                },2000);
+                this.result='加载中';
+            }*/
+            query:{ //输入时 先等待1s 在显示结果
+                handler(){
+                    setTimeout(()=>{
+                        this.result="搜索结果"
+                    },2000);
+                    this.result='加载中';
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

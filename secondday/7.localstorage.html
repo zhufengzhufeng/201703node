@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div>
+    <!--
+        可以将数据 存储到浏览器中 h5 新特性,cookie
+        localStorage.setItem('key','value')
+        localStorage.getItem('key')
+    -->
+</div>
+<script>
+    //传输的时候  都是以字符串传递 JSON.stringify，取出来的结果可能需要转化承对象 JSON.parse
+   localStorage.setItem('key',JSON.stringify({name:1}));//使用setItem 会自动转化成字符串
+   console.log(JSON.parse(localStorage.getItem('key')).name);
+</script>
+</body>
+</html>

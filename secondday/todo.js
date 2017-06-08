@@ -1,12 +1,22 @@
 let vm = new Vue({
     el:'#app',
     data:{
-        todos:[
-            {isSelected:true,title:'晚上回去睡觉'}
-        ],
+        todos:[],
         hash:'complete',//路径切换时 获取的hash值
         todo:'',// 输入框中需要增加的内容,
         t:''//当前点击的那一个
+    },
+    created(){ //当vue创建时执行的方法
+        //如果storage有 就用这里的值 没有就是空数组
+        this.todos = JSON.parse(localStorage.getItem('todos')) || [{isSelected:true,title:'晚上回去睡觉'}];
+    },
+    watch:{  //watch默认 只监控一层，例如 todos 可以监控数组的变化，监控不到对象的变化
+        todos:{
+            handler(){
+                localStorage.setItem('todos',JSON.stringify(this.todos));
+            },
+            deep:true
+        }
     },
     methods:{
         addTodo(){
@@ -43,8 +53,8 @@ let vm = new Vue({
             return this.todos.filter(item=>!item.isSelected).length;
         }
     },
-    directives:{ //指令
-        autoFocus(el,bindings){
+    directives:{ //指令，就是操作dom
+        focus(el,bindings){
             //bindings中有一个value属性 代表的是指令对应的值v-auto-focus="值"
             if(bindings.value){
                 el.focus();

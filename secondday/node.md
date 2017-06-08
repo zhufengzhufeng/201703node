@@ -11,3 +11,7 @@ h5 window.history.pushState({},null,'/aaa');路径可以存在也可以不存在
 ```
 
 > 如果想使用history.pushState 是需要后台支持的（页面不存在刷新会导致404）,开发时采用hash的方式，上线可以改成pushState
+
+
+## https://zhufengzhufeng.github.io/vue-todo/6.todo.html
+

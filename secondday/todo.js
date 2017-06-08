@@ -37,9 +37,10 @@ let vm = new Vue({
     },
 });
 let listener = () => {
-    let hash = window.location.hash.slice(1);
+    let hash = window.location.hash.slice(1) || 'complete'; //如果打开页面没有hash默认是全部
     vm.hash = hash;
 };
+listener(); //页面一加载 就需要获取一次hash值，否则可能导致 回到默认hash
 window.addEventListener('hashchange',listener,false);
 //1.将数据渲染到页面上 √
 //2.获取数据将内容插入到列表中  √

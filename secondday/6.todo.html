@@ -24,9 +24,9 @@
                 <h3 class="text-danger">亲 ，您还有 {{total}} 事要完成</h3>
                 <input type="text" class="form-control" placeholder="请输入要添加的事项" v-model="todo" @keyup.enter="addTodo">
                 <ul class="nav nav-pills" style="margin: 10px 0">
-                    <li class="active"><a href="#complete">全部完成</a></li>
-                    <li><a href="#finish">已完成</a></li>
-                    <li><a href="#unfinish">未完成</a></li>
+                    <li :class="{active:hash=='complete'}"><a href="#complete">全部完成</a></li>
+                    <li :class="{active:hash=='finish'}"><a href="#finish">已完成</a></li>
+                    <li :class="{active:hash=='unfinish'}"><a href="#unfinish">未完成</a></li>
                 </ul>
                 <ul class="list-group">
                     <!--del可以 让当前项变灰 ,如果当前为点击状态则生效-->

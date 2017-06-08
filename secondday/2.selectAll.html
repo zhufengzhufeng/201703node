@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="node_modules/vue/dist/vue.js"></script>
+<div id="app">
+    <!--checkbox 值根据v-model的值是true还是false做为是否选中-->
+    全选按钮 <input type="checkbox" @click="fn" v-model="all"> <br>
+    <input type="checkbox" v-for="check in checks" v-model="check.isSelect" @click="selectOne">
+</div>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            all:false,
+            checks:[{isSelect:true},{isSelect:false},{isSelect:true}]
+        },
+        methods:{
+            selectOne(){
+                //去数组中查找，如果有一个是false 全选就是false
+                //如果找到false 返回的true 全选状态应该为false
+                this.all = !this.checks.some(item=>!item.isSelect);
+            },
+            fn(){
+                //改变this指向问题 1.let that = this
+                //2.bind
+                //3.箭头函数 箭头函数没有this指向，从而解决了this问题
+                this.checks.forEach((item)=>{
+                    item.isSelect = this.all;
+                });
+            }
+        }
+    })
+</script>
+</body>
+</html>

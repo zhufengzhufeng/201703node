@@ -25,7 +25,8 @@
                 this.all = !this.checks.some(item=>!item.isSelect);
             },
             fn(){
-                //改变this指向问题 1.let that = this
+                //改变this指向问题
+                //1.let that = this
                 //2.bind
                 //3.箭头函数 箭头函数没有this指向，从而解决了this问题
                 this.checks.forEach((item)=>{

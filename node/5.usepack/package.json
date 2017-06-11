@@ -1,0 +1,16 @@
+{
+  "name": "5.usepack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node use.js",
+    "dev":"node use.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jw-pack-handsome": "^1.0.0"
+  }
+}

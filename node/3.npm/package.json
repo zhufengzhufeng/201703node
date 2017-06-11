@@ -1,0 +1,17 @@
+{
+  "name": "3.npm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "1.npm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^2.2.0",
+    "react": "^15.5.4"
+  },
+  "devDependencies": {}
+}

@@ -24,4 +24,37 @@ nrm ls
 ```
 nrm use taobao
 ```
+
+### http-server
+- 启动一个服务，观看页面
+```
+http-server -p 3000
+```
 - 本地安装 (在当前项目下使用)
+初始化一个package.json不会导致安装到上一层级
+```
+npm init
+```
+### package.json 可以记录安装过哪些东西
+```
+npm install jquery --save 项目依赖
+npm install babel-core --save-dev 开发依赖
+npm uninstall jquery -save 卸载
+npm uninstall babel-core --save-dev 卸载
+```
+### 查看版本号
+```
+npm info 包名（多个模块组成一个包）
+```
+### 安装某个版本
+```
+npm install jquery@2.2.0 --save
+```
+
+### 安装所有依赖
+```
+npm install 
+```
+
+
+> 默认安装时会在当前目录查找node_modules文件，如果没有则向上找，上面有就会安装到上一层，如果没有则安装到当前文件夹下

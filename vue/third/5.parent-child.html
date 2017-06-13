@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--相当于在父亲的空间上声明一个属性 a=1-->
+    <fruit :a="2" :b="age"/>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //父向子传递数据 通过属性传递
+    //父亲 -> 儿子 -> 孙子  传递时 需要一级级传递
+    let fruit = {
+        template:`<div @click="fn">{{b}}</div>`,
+       /* data(){
+          return {b:this.a} //不能声明和props相同的属性
+        },*/
+        computed:{
+            b(){
+               return this.a
+            }
+        },
+        methods:{
+          fn(){
+              this.b = this.b + 1; //在vue不能直接操作 父亲传递过来的属性,可以重新创建一个data 或者计算一个新的属性 替代它。
+          }
+        },
+        props:{
+            a:{ //一般都会校验传递过来的属性
+                //:a="1" 会把内容转化成变量 不在是字符串1
+                type:[Number],// 会默认校验传递过来的属性类型
+                default:200,//拦截属性没有传递的时候 可以使用默认值
+               /* validator(val){ //一般情况下使用validator 就不需要type了
+                    //如果返回true表示 通过 ，返回false就不通过
+                    return val===2;
+                }*/
+            },
+            //b:{}
+        }
+        //props:['a','b'],//父亲通过属性传递，会默认将当前传递的属性声明到当前组件上
+    };
+    let vm = new Vue({ //父组件
+        el:'#app',
+        data:{age:8},
+        components:{ fruit }
+    })
+</script>
+</body>
+</html>

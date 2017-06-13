@@ -7,8 +7,12 @@
 </head>
 <body>
 <div id="app">
-    <panel type="success" title="标题1" :has-btn="true" @say="fn">这是内容1</panel>
-    <panel type="warning" :has-btn="false">这是内容2</panel>
+    <panel type="success" title="标题1" :has-btn="true" @say="aa">
+        这是内容1
+    </panel>
+    <panel type="warning" :has-btn="false">
+        这是内容2
+    </panel>
 </div>
 <template id="pan">
     <div class="panel" :class="[sty]">
@@ -19,7 +23,7 @@
             <slot>这是一个普通的面板</slot>
         </div>
         <div class="panel-footer">
-            <button class="btn btn-danger" v-if="hasBtn">
+            <button class="btn btn-danger" v-if="hasBtn" @click="say">
                 点我say
             </button>
         </div>
@@ -32,6 +36,11 @@
         computed:{
             sty(){ //panel-danger
                 return 'panel-'+this.type
+            }
+        },
+        methods:{
+            say(){
+                this.$emit('say',this.title)
             }
         },
         props:{
@@ -51,6 +60,11 @@
     };
     let vm = new Vue({
         el:'#app',
+        methods:{
+            aa(data){
+                alert(data);
+            }
+        },
         components:{
             panel
         }

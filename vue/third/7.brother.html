@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <brother-one></brother-one>
+    <brother-two></brother-two>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //我们可以创建一个组件 两个人都是用这个组件 $emit $on
+    // eventBus  只有逻辑非常简单的情况下 可以采用这种方式 ->  VUEX
+    let event = new Vue();
+    let vm = new Vue({
+        el:'#app',
+        components:{
+            brotherOne:{
+                data(){
+                  return {age:3}
+                },
+                template:'<div><div @click="fn">brotherOne</div> <son></son></div>',
+                methods:{
+                    fn(){
+                        event.$emit('年龄',this.age)
+                    }
+                },
+                components:{
+                    son:{
+                        template:'<div>son</div>',
+                        created(){
+                            event.$on('年龄', (data)=>{ //这里若要使用this
+                                alert(data);
+                            });
+                        }
+                    }
+                }
+            },
+            brotherTwo:{
+                template:'<div>brotherTwo</div>',
+                created(){
+                    event.$on('年龄',function (data) {
+                       alert(data)
+                    })
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

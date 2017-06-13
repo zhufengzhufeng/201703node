@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<!--vue 提供的template语法  默认template是无意义的-->
+<template id="parent">
+    <div>
+        <div><my1/></div>
+        <div><my2/></div>
+    </div>
+</template>
+<script>
+    let obj = {msg:'world'};
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'hello'
+        },
+        template:'#parent',
+        components:{ //这里带s
+            my1:{ //这个组件需要在父级的模板中使用
+                template:'<div>{{msg}}  my1</div>',
+                data(){
+                    return {msg:'hello'}
+                }
+                // 组件的数据 儿子不能直接使用父组件的数据
+                // 组件中data必须是函数类型，防止数据共享，组件中的data会默认返回新的对象作为组件的数据
+            },
+            my2:{  //组件中 默认 返回函数的目的：就是为了互不影响
+                template:'<div @click="fn">{{msg}} my2</div>',
+                data(){
+                    return {msg:'hello'}
+                },
+                methods:{
+                    fn(){
+                        this.msg = 'jw'
+                    }
+                }
+            }
+
+        }
+    });
+</script>
+</body>
+</html>

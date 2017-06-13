@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    // 默认实例化 就会产生一个根组件
+    //全局组件 在任何的地方都能使用,只限在根组件中
+    Vue.component('zfComponent',{ //这个组件在很多不同的地方都需要用到 我们会注册成全局组件。一般多数情况下 仍然使用局部组件
+        template:'<div>world</div>'
+    });  //zf-component 就变成了一个自定义标签，在任意的根组件的模板下使用
+    let vm = new Vue({
+        el:'#app',
+        data:{},
+        methods:{},
+        //在html标签中使用组件 一般采用 短横线隔开
+        template:'<div>hello <zf-component/></div>'//可以通过制定template元素 插入到div中
+    });
+    //html不存在的名字 才能作为新的组件
+</script>
+</body>
+</html>

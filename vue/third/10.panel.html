@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <panel type="success" title="标题1" :hasBtn="true">这是内容1</panel>
+    <panel type="danger" title="标题2" :hasBtn="false">这是内容2</panel>
+</div>
+<template id="pan">
+    <div class="panel panel-danger">
+        <div class="panel-heading">README.md</div>
+        <div class="panel-body">这是一个普通的面板</div>
+        <div class="panel-footer">
+            <button class="btn btn-danger">点我say</button>
+        </div>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let panel = {template:'#pan'};
+    let vm = new Vue({
+        el:'#app',
+        components:{
+            panel
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{msg}}
+    <ul ref="ul">
+        <!--ref 声明的属性  可以通过 this.$refs.ul-->
+        <li v-for="item in arr">{{item}}</li>
+    </ul>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        //el:'#app', 通过制定el 来挂载数据
+        data:{msg:'hello',a:1,arr:[1,2,3]},
+        beforeCreate(){ //一般没用
+            alert('创建之前')
+        },
+        created(){ //初始化一些数据，进行ajax调用
+            alert('创建之后');
+        },
+        beforeMount(){ //我们一般不用
+            alert('挂载前');
+        },
+        mounted(){ //页面中的dom 已经渲染成功了 数据也ok了
+            console.log(this.$refs.ul.children); //可以通过$refs 获取到dom元素
+            alert('挂载后');
+        },
+        beforeUpdate(){
+            alert('更新前'); //当页面上的内容 发生变化，就会调用此函数，监控某一个 优先watch
+        },
+        updated(){
+            alert('更新后');
+        },
+        beforeDestroy(){
+            alert('销毁之前')
+        },
+        destroyed(){
+            alert('销毁之后');// 清定时器，移除事件监听
+        }
+    });
+    vm.$mount('#app');//手动挂载
+    vm.$destroy(); //会将事件 绑定的数据 销毁，不会导致html的变化
+</script>
+</body>
+</html>

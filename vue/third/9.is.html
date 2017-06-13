@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--template  component  keep-alive-->
+<div id="app">
+    <!--使用radio需要制定value属性-->
+    <input type="radio" v-model="radio" value="my1"> 男
+    <input type="radio" v-model="radio" value="my2"> 女
+    <!--会产生“缓存” ，数据不用重新在获取，页面也不用重新渲染 -->
+    <keep-alive>
+        <component :is="radio"></component>
+    </keep-alive>
+    爱好
+    <!--<input type="checkbox" value="swimming" v-model="check">游泳
+    <input type="checkbox" value="climb" v-model="check">爬山
+    <input type="checkbox" value="shopping" v-model="check">逛街
+    {{check}}-->
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+          radio:'',
+          check:[]//多选的情况下 数据类型必须是数组
+        },
+        components:{
+           'my1':{
+               template:'<div ref="div" @click="fn">男</div>',
+               methods:{
+                   fn(){
+                       this.$refs.div.style.background='red'
+                   }
+               }
+           },
+           'my2':{template:'<div>女</div>'},
+        }
+    })
+</script>
+</body>
+</html>

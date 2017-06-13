@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <alert>
+        我好帅
+        <div slot="down">账号不能为空</div>
+        <ul slot="up">
+            <li>xxx</li>
+            <li>aaa</li>
+        </ul>
+        你好丑
+    </alert>
+</div>
+<template id="alert">
+    <div class="alert alert-danger">
+        <slot name="up"></slot>
+        <slot name="down"></slot>
+        <slot></slot>
+    </div>
+</template>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#app',
+        components:{
+            alert:{
+               template:'#alert'
+            }
+        }
+    })
+</script>
+</body>
+</html>

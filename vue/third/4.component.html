@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<!--<div>水果
+    <div>甜的 <div>西瓜</div></div>
+    <div>酸的</div>
+</div>-->
+<!--<div>水果</div>-> <div>甜的</div><div>酸的</div> -> <div>西瓜</div>-->
+<div id="app"></div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    //.vue文件 可以实现 组件的拆分
+    let waterMelon = {
+        template:'<div>西瓜</div>'
+    };
+    let noSweet = {
+        template:'<div>酸水果</div>'
+    };
+    let sweet = {
+        template:'<div>甜水果 <water-melon></water-melon></div>',
+        components:{
+            waterMelon
+        }
+    };
+    let fruit = {
+        template:'<div  class="a">水果 <sweet></sweet> <no-sweet></no-sweet></div>',
+        components:{
+            sweet,
+            noSweet
+        }
+    };
+    let vm = new Vue({
+        el:'#app',
+        template:'<fruit/>', //根组件中 一般存放一个单个的组件
+        components:{
+            fruit
+        }
+    })
+</script>
+</body>
+</html>

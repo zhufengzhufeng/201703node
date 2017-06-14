@@ -12,11 +12,16 @@
             <div class="navbar-header">
                 <a class="navbar-brand">用户管理</a>
             </div>
+            <!--如果用户登录过  显示 首页 个人信息 退出-->
+            <!--如果没有登录过 只能看到首页和登录 强行访问个人信息 跳转到登录页 -->
+            <!--从localStorage 如果有login并且为true 我认为登录过-->
             <ul class="nav navbar-nav">
                 <li><router-link to="/home">首页</router-link></li>
-                <li>
-                    <router-link to="/login">登录</router-link></li>
-                <li><a href="">退出</a></li>
+                <li v-show="!login"> <router-link to="/login">登录</router-link></li>
+                <li v-show="login">
+                    <router-link to="/profile">个人信息</router-link>
+                </li>
+                <li v-show="login"><a href="">退出</a></li>
             </ul>
         </div>
     </div>
@@ -58,6 +63,9 @@
     .slider-mask{background: rgba(0,0,0,.4);position: absolute;bottom: 0;left: 0;width: 100%;height: 40px;line-height: 40px;color:#fff;text-align: right;}
     .slider-mask span{padding:0 10px;cursor: pointer}
 </style>
+<template id="profile">
+    <div>个人中心</div>
+</template>
 <script>
     let slider = {
         template:'#slider',
@@ -99,16 +107,36 @@
     let Login  = {
         template:'#login'
     };
+    let Profile = {template:'#profile'}
     let routes = [
         {path:'/home',component:Home},
-        {path:'/login',component:Login}
+        {path:'/login',component:Login},
+        {path:'/profile',component:Profile},
     ];
     let router = new VueRouter({
         routes
     });
     let vm = new Vue({
         el:'#app',
-        router
+        router,
+        data:{
+          login:false
+        },
+        methods:{
+            checkLogin(){ //检测是否登录
+               let flag = localStorage.getItem('login')||'';
+               if(flag === 'true'){
+                   this.login = true;
+               }else{
+                   this.login = false;
+               }
+               alert(this.login)
+            }
+        },
+        created(){
+            //检查是否登录
+            this.checkLogin();
+        }
     })
 </script>
 </body>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <div class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">用户管理</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><router-link to="/home">首页</router-link></li>
+                <li>
+                    <router-link to="/login">登录</router-link></li>
+                <li><a href="">退出</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<template id="home">
+    <div>首页</div>
+</template>
+<template id="login">
+    <div>登录页</div>
+</template>
+<script>
+    let Home  = {
+        template:'#home'
+    };
+    let Login  = {
+        template:'#login'
+    };
+    let routes = [
+        {path:'/home',component:Home},
+        {path:'/login',component:Login}
+    ];
+    let router = new VueRouter({
+        routes
+    });
+    let vm = new Vue({
+        el:'#app',
+        router
+    })
+</script>
+</body>
+</html>

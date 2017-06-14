@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .box{width: 100px;height: 100px;background:red;opacity: 1}
+        .box{width: 100px;height: 100px;background:red}
+
         .fadeIn-enter{opacity: 0;transform: scale(0)}
         .fadeIn-enter-active{transition: 0.5s linear}
+
+
+
+
         .fadeIn-leave-active{opacity: 0; transition: 0.5s linear;transform: scale(0)}
     </style>
     <link rel="stylesheet" href="node_modules/animate.css/animate.css">
@@ -20,9 +25,9 @@
         <div class="box" v-show="flag"></div>
     </transition>
     <!--可以改变动画的名字-->
-    <!--<transition name="fadeIn">
+    <transition name="fadeIn">
         <div class="box" v-show="flag"></div>
-    </transition>-->
+    </transition>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script>

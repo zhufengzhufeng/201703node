@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--单页应用 SPA  实际只有一个页面，只是换页面中的内容 , hashHistory(/#home)  browserHistory(/home)需要服务端支持-->
+<style>
+    /*vue提供的css样式 实现导航的激活样式*/
+    .router-link-active{color:red}
+</style>
+<div id="app">
+    <!--会将组件放置到router-view中 ，当路径切换时，相应的组件会替换掉router-view-->
+    <!--vue提供的组件 （这是声明式导航）-->
+    <router-link to="/home?id=1" tag="li">首页</router-link>
+    <router-link :to="{path:'/list',query:{id:1}}" tag="li">列表页</router-link>
+    <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    //http://localhost:63342#/home
+    let Home = {template:'<div>首页</div>'};
+    let List = {template:'<div>列表</div>'};
+    let routes = [ //专门维护路由匹配规则
+        {path:'/home',component:Home},
+        {path:'/list',component:List}
+    ];
+    let router = new VueRouter({ //用来 设计规则的，不同的路径 展示不同的页面
+        routes,
+        //mode:'history' 浏览器自带的模式，上线时一般使用这种模式
+    });
+    let vm = new Vue({
+        el:'#app',
+        router
+    });
+</script>
+</body>
+</html>

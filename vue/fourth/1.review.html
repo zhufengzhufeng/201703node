@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app" >
+    <!--this.$on('parent',fn)-->
+    <fruit @parent="fn"></fruit>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<template id="fruit">
+        <!--点击div执行父类的方法-->
+      <div @click="say">水果</div>
+</template>
+<script>
+    //叫实例 -> 根组件
+    let vm = new Vue({
+        el:'#app',
+        data:{msg:1},
+        methods:{
+            fn(data){
+                alert(data)
+            }
+        },
+        //只有一个根节点
+        //template:'<fruit></fruit>',
+        components:{
+            fruit:{
+                template:'#fruit',
+                methods:{
+                    say(){
+                        this.$emit('parent',1);
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

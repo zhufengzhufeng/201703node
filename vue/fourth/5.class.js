@@ -15,3 +15,4 @@ function People(name,age) { //name是来自于父类的 age来自自己的
 People.prototype = Object.create(Person.prototype); //这里会更改People.prototype.constructor,我们需要重新指定一下
 People.prototype.constructor = People;
 let people = new People('zfpx',8);
+

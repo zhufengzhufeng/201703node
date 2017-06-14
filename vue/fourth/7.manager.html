@@ -21,14 +21,14 @@
                 <li v-show="login">
                     <router-link to="/profile">个人信息</router-link>
                 </li>
-                <li v-show="login"><a href="">退出</a></li>
+                <li v-show="login"><a @click="logout">退出</a></li>
             </ul>
         </div>
     </div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <router-view></router-view>
+                <router-view @login="checkLogin"></router-view>
             </div>
         </div>
     </div>
@@ -36,7 +36,10 @@
 <script src="node_modules/vue/dist/vue.js"></script>
 <script src="node_modules/vue-router/dist/vue-router.js"></script>
 <template id="login">
-    <div>登录页</div>
+    <div>
+        <pre>登录页</pre>
+        <button class="btn btn-primary" @click="login">登录</button>
+    </div>
 </template>
 <template id="home">
     <div>首页
@@ -64,7 +67,17 @@
     .slider-mask span{padding:0 10px;cursor: pointer}
 </style>
 <template id="profile">
-    <div>个人中心</div>
+    <div>
+        <div class="col-md-4">
+            <ul class="nav nav-stacked">
+                <li><router-link to="/profile/info">个人信息</router-link></li>
+                <li><router-link to="/profile/about">关于我</router-link></li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <router-view></router-view>
+        </div>
+    </div>
 </template>
 <script>
     let slider = {
@@ -105,16 +118,50 @@
         }
     };
     let Login  = {
-        template:'#login'
+        template:'#login',
+        methods:{
+            login(){
+                localStorage.setItem('login',true);//将本地数据 改成登录完成
+                //更改后导航并没有实现改变,更改父亲的逻辑 ，让其变成login:true
+                this.$emit('login');
+                this.$router.push('/home');//跳转到登录页
+            }
+        }
     };
-    let Profile = {template:'#profile'}
+    let Profile = {template:'#profile'};
+    let Info = {template:'<div>个人信息</div>'};
+    let About = {template:'<div>关于我</div>'};
     let routes = [
         {path:'/home',component:Home},
         {path:'/login',component:Login},
-        {path:'/profile',component:Profile},
+        {
+            path:'/profile',
+            component:Profile,
+            children:[
+                {path:'about',component:About},
+                {path:'info',component:Info},
+            ],
+            meta:{needLogin:true}//设置这个路由 是需要认证的，仅仅是备注一下，没有实现抵挡的功能
+        },
     ];
     let router = new VueRouter({
         routes
+    });
+    //全局的方法 可以监控任意一个路径的更新
+    router.beforeEach((to,from,next)=>{ //next是一个函数 如果调用了next 会继续执行，没调用则卡在这个状态上
+        //一般做验证逻辑
+        console.log(to);//应该查找to中的 matched属性 他是一个数组，装着每一个匹配到的路由 /profile /profile/info ,只要有一个 里面meta属性是needLogin 就需要检查一下是否登录，如果登录了,继续，否则跳转到登录页面
+        let flag = to.matched.some(item=>item.meta.needLogin);//有一个true 就表示需要验证
+        if(flag){
+            let status = localStorage.getItem('login')||'';
+            if(status === 'true'){
+                next();
+            }else{
+                next({path:'/login'}); //重定向
+            }
+        }else{
+            next(); //不需要验证登录
+        }
     });
     let vm = new Vue({
         el:'#app',
@@ -130,7 +177,11 @@
                }else{
                    this.login = false;
                }
-               alert(this.login)
+            },
+            logout(){
+                localStorage.clear('login');
+                this.login = false;
+                this.$router.push('/home')
             }
         },
         created(){

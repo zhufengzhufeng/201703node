@@ -30,15 +30,71 @@
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script src="node_modules/vue-router/dist/vue-router.js"></script>
-<template id="home">
-    <div>首页</div>
-</template>
 <template id="login">
     <div>登录页</div>
 </template>
+<template id="home">
+    <div>首页
+        <slider :data="imgArrs"></slider>
+    </div>
+</template>
+<template id="slider">
+    <div class="slider">
+        <img :src="data[index]" alt="">
+        <div class="slider-btn">
+            <span @click="go(prev)">&lt;</span>
+            <span @click="go(next)">&gt;</span>
+        </div>
+        <div class="slider-mask">
+            <span v-for="(dot,index) in data" @click="go(index)">{{index+1}}</span>
+        </div>
+    </div>
+</template>
+<style>
+    .slider{width: 520px;height: 280px;position: relative}
+    .slider-btn span{position: absolute;width: 30px;height:60px;top:110px;background: #fff;line-height: 60px;text-align: center }
+    .slider-btn span:nth-child(1){left: 10px}
+    .slider-btn span:nth-child(2){right: 10px}
+    .slider-mask{background: rgba(0,0,0,.4);position: absolute;bottom: 0;left: 0;width: 100%;height: 40px;line-height: 40px;color:#fff;text-align: right;}
+    .slider-mask span{padding:0 10px;cursor: pointer}
+</style>
 <script>
+    let slider = {
+        template:'#slider',
+        computed:{
+            prev(){
+                let p = this.index - 1;
+                if(p === -1){
+                    p = this.data.length-1;
+                }
+                return p;
+            },
+            next(){
+                let n = this.index + 1;
+                if(n === this.data.length){
+                    n = 0;
+                }
+                return n;
+            },
+        },
+        data(){
+            return {index:0}
+        },
+        methods:{
+          go(i){
+              this.index = i;
+          }
+        },
+        props: ['data']//data就会挂在在slider的实例上
+    };
     let Home  = {
-        template:'#home'
+        template:'#home',
+        data(){
+            return {imgArrs:['1.jpg','2.jpg','3.jpg']}
+        },
+        components:{
+            slider
+        }
     };
     let Login  = {
         template:'#login'

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <router-link to="/article/123/zfpx">第一篇文章</router-link>
+    <router-link to="/article/456/jw">第二篇文章</router-link>
+    <router-view></router-view>
+</div>
+<!-- /article/1  /article/2  /article/3 路径参数，通过路径传递参数 -->
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    //: 代表的是 必须有 但是可以随机,当路径真实访问的时候 /article/100
+    ///article/100/zf + /article/:articleId/:name   => {articleId:100,name:'zf'} => this.$route.params,
+    let Article = {
+        template:"<div>第{{id}}文章 名字是{{name}}</div>",
+        computed:{
+            id(){
+                return this.$route.params.articleId
+            },
+            name(){
+                return this.$route.params.name;
+            }
+        }
+    };
+    let routes = [{path:'/article/:articleId/:name',component:Article}];
+    let router = new VueRouter({
+        routes,
+        //mode:'history'
+    });
+    let vm = new Vue({
+        el:'#app',
+        router,// vm就会多一些属性 this.$route(调用属性)   this.$router(调用方法)
+    });
+
+</script>
+</body>
+</html>

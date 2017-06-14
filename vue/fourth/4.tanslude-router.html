@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <router-link to="/fruit">水果</router-link>
+    <router-link to="/drink">饮料</router-link>
+    <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<template id="fruit">
+    <div>好多水果</div>
+</template>
+<script>
+    //水果  甜的 酸的   饮料 雪碧 可乐 果粒橙
+    let Fruit = {template:'#fruit'};
+    let Drink = {template:'<div>好多饮料</div>'};
+    let routes = [
+        //3.默认配置一个路径的展示
+        {
+            path:'',
+            component:Drink
+        },
+        {
+            path:'/fruit',
+            component:Fruit
+        },
+        {
+            path:'/drink',
+            component:Drink
+        },
+        //2.当路径都匹配不到的时候 显示一个组件 404
+        /*{
+            path:'*',
+            component:Fruit //一般都是配置404
+        }*/
+        //1.当访问/的时候 跳转到 /drink 重定向
+        /*{
+            path:'/',
+            redirect:'/drink'
+        }*/
+    ];
+    let router = new VueRouter({
+        routes
+    });
+    let vm = new Vue({
+        el:'#app',
+        router
+    });
+</script>
+</body>
+</html>

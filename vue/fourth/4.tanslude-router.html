@@ -21,12 +21,22 @@
         <router-view></router-view>
     </div>
 </template>
+<template id="drink">
+    <div>
+        <p>好多饮料</p>
+        <router-link to="/drink/1">可乐</router-link>
+        <router-link to="/drink/2">雪碧</router-link>
+        <router-link to="/drink/3">果粒橙</router-link>
+        <router-view></router-view>
+    </div>
+</template>
 <script>
     //水果  甜的 酸的   饮料 雪碧 可乐 果粒橙
     let Fruit = {template:'#fruit'};
-    let Drink = {template:'<div>好多饮料</div>'};
+    let Drink = {template:'#drink'};
     let Sweet = {template:'<div>甜水果 西瓜 荔枝</div>'}; // /fruit/sweet
     let NoSweet = {template:'<div>酸的 西红柿 柠檬</div>'}; // /fruit/no-sweet
+    let Type = {template:'<div>{{$route.params.id}}</div>'}
     let routes = [
         //3.默认配置一个路径的展示
         {
@@ -37,6 +47,7 @@
             path:'/fruit',
             component:Fruit,
             children:[
+                {path:'',component:Sweet}, //默认展示
                 {path:'sweet',component:Sweet},
                 {path:'no-sweet',component:NoSweet}
             ]
@@ -45,7 +56,7 @@
             path:'/drink',
             component:Drink,
             children:[
-                {path:':id'}
+                {path:':id',component:Type}
             ]
         },
         //2.当路径都匹配不到的时候 显示一个组件 404
@@ -66,6 +77,11 @@
         el:'#app',
         router
     });
+    //vue默认使用时 都采用声明式导航
+    //采用非声明式 在js中跳转 ，方法都挂在在 this.$router / router
+    //router.push() 会产生历史记录
+    //router.replace() 替换掉当前历史记录
+    //router.go() 跳转到上几级
 </script>
 </body>
 </html>

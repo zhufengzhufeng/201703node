@@ -8,17 +8,25 @@
 <div id="app">
     <router-link to="/fruit">水果</router-link>
     <router-link to="/drink">饮料</router-link>
+    <!--点击饮料 显示 三种饮料 /drink/1  /drink/2  /drink/3  在对应的自己的模板中显示 id为 1,2,3-->
     <router-view></router-view>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
 <script src="node_modules/vue-router/dist/vue-router.js"></script>
 <template id="fruit">
-    <div>好多水果</div>
+    <div>
+        <p>好多水果</p>
+        <router-link to="/fruit/sweet">甜</router-link>
+        <router-link to="/fruit/no-sweet">酸</router-link>
+        <router-view></router-view>
+    </div>
 </template>
 <script>
     //水果  甜的 酸的   饮料 雪碧 可乐 果粒橙
     let Fruit = {template:'#fruit'};
     let Drink = {template:'<div>好多饮料</div>'};
+    let Sweet = {template:'<div>甜水果 西瓜 荔枝</div>'}; // /fruit/sweet
+    let NoSweet = {template:'<div>酸的 西红柿 柠檬</div>'}; // /fruit/no-sweet
     let routes = [
         //3.默认配置一个路径的展示
         {
@@ -27,11 +35,18 @@
         },
         {
             path:'/fruit',
-            component:Fruit
+            component:Fruit,
+            children:[
+                {path:'sweet',component:Sweet},
+                {path:'no-sweet',component:NoSweet}
+            ]
         },
         {
             path:'/drink',
-            component:Drink
+            component:Drink,
+            children:[
+                {path:':id'}
+            ]
         },
         //2.当路径都匹配不到的时候 显示一个组件 404
         /*{

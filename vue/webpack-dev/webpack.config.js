@@ -24,7 +24,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             template:'./src/index.html'
         })
-    ]
+    ],
+    devServer:{
+        port:3000 //更改端口号
+    }
 };
 //安装webpack 一般不采用-g安装 ，可能每个人的版本不同导致一些问题
 //本地安装 项目依赖 开发依赖
@@ -45,6 +48,13 @@ module.exports = {
 // npm install file-loader url-loader --save-dev
 // 10.html插件 可以自动注入js ，生成到dist目录下
 // npm install html-webpack-plugin --save-dev
+// 11.启动一个开发服务 webpack-dev-server 实时监控代码更新 页面刷新
+// npm install webpack-dev-server --save-dev
+
+// 12.回去安装vue-cli 简易使用cnpm
+// npm install vue-cli -g
+// vue init webpack 项目名  (esLint:no,e2e no,mocha+kama no)
+// cd 项目名 && npm install
 
 
 

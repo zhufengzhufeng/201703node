@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -195,7 +195,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(9);
+var	fixUrls = __webpack_require__(8);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -529,7 +529,7 @@ exports.default = str;
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(7);
+var content = __webpack_require__(6);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -560,7 +560,7 @@ if(false) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(8);
+var content = __webpack_require__(7);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -588,12 +588,6 @@ if(false) {
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "fbd41db047c7193f60ef21a6053bfb88.jpg";
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
@@ -601,6 +595,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /*
 let str = require('./component');
 console.log(str);*/
+
 
 var _component = __webpack_require__(2);
 
@@ -610,12 +605,9 @@ __webpack_require__(4);
 
 __webpack_require__(3);
 
-var _ = __webpack_require__(5);
-
-var _2 = _interopRequireDefault(_);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import src from './1.jpg';
 var a = function a() {
   return _component2.default;
 };
@@ -626,11 +618,17 @@ var obj1 = { name: 1 };
 var obj2 = { age: 2 };
 console.log(_extends({}, obj1, obj2));
 var oImg = document.createElement('img');
-oImg.src = _2.default; //在js中引用路径如果是字符串 默认不会将图片导出
-document.body.appendChild(oImg);
+var oImg1 = document.createElement('img');
+var oImg2 = document.createElement('img');
+// oImg.src = src; //在js中引用路径如果是字符串 默认不会将图片导出
+oImg1.src = 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png';
+oImg2.src = './1.jpg';
+//在js中引用路径如果是字符串 默认不会将图片导出
+// document.body.appendChild(oImg);
+document.body.appendChild(oImg1);
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -644,7 +642,7 @@ exports.push([module.i, "body {\n  color: red;\n}\n", ""]);
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(undefined);
@@ -652,13 +650,13 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "body{\r\n    background: blue;\r\n}", ""]);
+exports.push([module.i, "body{\r\n    background: pink;\r\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 

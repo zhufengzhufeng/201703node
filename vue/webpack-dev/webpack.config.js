@@ -1,11 +1,12 @@
 //文件名 默认叫webpack.config.js ，就是一个配置文件
 let path = require('path');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 //可以将文件名 转化成当前路径下的绝对路径地址
 module.exports = {
     //打包 将内容 合并后打出一个文件
     entry:'./src/index.js',
     output:{
-        filename:'bundle.js',//打包出的文件名
+        filename:'build.js',//打包出的文件名
         path:path.resolve('dist')//必须是一个绝对路径
     },
     //我们需要编译es6语法 ，babel
@@ -18,7 +19,12 @@ module.exports = {
             //限制8k以上的不用base64
             {test:/\.(jpg|png|gif)/,use:'url-loader?limit=8000'}
         ]
-    }
+    },
+    plugins:[
+        new HtmlWebpackPlugin({
+            template:'./src/index.html'
+        })
+    ]
 };
 //安装webpack 一般不采用-g安装 ，可能每个人的版本不同导致一些问题
 //本地安装 项目依赖 开发依赖
@@ -37,6 +43,8 @@ module.exports = {
 // npm install babel-preset-stage-0 --save-dev
 // 9.图片
 // npm install file-loader url-loader --save-dev
+// 10.html插件 可以自动注入js ，生成到dist目录下
+// npm install html-webpack-plugin --save-dev
 
 
 

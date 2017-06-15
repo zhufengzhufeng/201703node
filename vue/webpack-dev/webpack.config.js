@@ -1,7 +1,6 @@
 //文件名 默认叫webpack.config.js ，就是一个配置文件
 let path = require('path');
 //可以将文件名 转化成当前路径下的绝对路径地址
-console.log(path.resolve('dist'));
 module.exports = {
     //打包 将内容 合并后打出一个文件
     entry:'./src/index.js',
@@ -13,7 +12,11 @@ module.exports = {
     module:{ //可以存放规则
         rules:[
             //需要告诉loader 翻译成什么样的类型，需要在当前根目录下建立一个文件，配上预设才可以 .babelrc
-            {test:/\.js$/,use:'babel-loader',exclude:/node_modules/}
+            {test:/\.js$/,use:'babel-loader',exclude:/node_modules/},
+            {test:/\.css$/,use:['style-loader','css-loader']},
+            {test:/\.less$/,use:['style-loader','css-loader','less-loader']},
+            //限制8k以上的不用base64
+            {test:/\.(jpg|png|gif)/,use:'url-loader?limit=8000'}
         ]
     }
 };
@@ -26,3 +29,18 @@ module.exports = {
 // npm install babel-core babel-loader --save-dev
 // 5.第一个预设 转化es6
 // npm install babel-preset-es2015 --save-dev
+// 6.解析css 先识别成 css 在把 编译好的css 插入到style标签中，从右往左写
+// npm install css-loader style-loader --save-dev
+// 7.编译less sass stylus
+// npm install less-loader less --save-dev
+// 8.解析测试阶段的es版本 例如解构对象
+// npm install babel-preset-stage-0 --save-dev
+// 9.图片
+// npm install file-loader url-loader --save-dev
+
+
+
+
+
+
+

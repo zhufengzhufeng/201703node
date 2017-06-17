@@ -50,13 +50,26 @@ console.log(buffer.toString());
 //拼接buffer
 Buffer.myConcat = function (list,totalLength) {
     //1.如果不传递总长 默认全部拼接,要计算出总长度
+    if(typeof totalLength === 'undefined'){
+        totalLength = 0; //因为默认情况下是undefined
+        list.forEach(item=>{
+            totalLength+=item.length;//计算出总长度
+        });
+    }
     //2.如果长度传递了 则按照传递的长度来算
+    let buffer  = new Buffer(totalLength); //最后拼接后的buffer
     //3.创建一个大buffer，最后返回的那个buffer
+    let index = 0;
     //4.循环列表 将列表的每一项，拷贝到大buffer上
+    list.forEach(buf=>{
+        buf.copy(buffer,index);
+        index += buf.length;
+    });
+    return buffer.slice(0,index); //截取最终的有效长度
     //5.如果传递过长，截取到有效长度 slice
     //6.返回的结果是buffer
 };
-console.log(Buffer.myConcat([buf1,buf2,buf2],100000).toString());
+console.log(Buffer.myConcat([buf1,buf2,buf2]).toString());
 
 
 /*

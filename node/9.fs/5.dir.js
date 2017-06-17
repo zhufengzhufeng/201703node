@@ -37,7 +37,7 @@ function makep(url,callback) {
     }
     make(dirArr[index]);//先保证第一级目录存在
 }
-makep('g/b/c/e/f',function () {
-    
-});
+makep('g/b/c/e/f',function () {});
+//fs.readFile fs.writeFile fs.mkdir fs.exists
+//rmdir 删除目录 unlink 删除文件  fs.stat 判断文件的状态，如果是文件夹进到文件夹中删除文件
 

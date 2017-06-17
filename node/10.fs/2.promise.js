@@ -2,17 +2,20 @@ let fs = require('fs');
 function read(filename,callback) {
     return new Promise((resolve,reject)=>{
         fs.readFile(filename,'utf8',function (err,data) {
-            if(err)reject('ok');
+            if(err)reject('error');
             resolve(data)
         });
     });
 }
 //1. async 要和 await 连用 async 是用来修饰函数的 只有在 async中才可以 使用await
 let result =async function () {
-   let name =  await read('./a.txt'); //await紧跟着的必须是promise对象，可以像写同步方法一样来写异步
-   let age = await read('./b.txt');
-   let school = {name,age};
-   console.log(school);
+    try{ //可以使用try catch捕获异常
+        let name =  await read('./1.txt'); //await紧跟着的必须是promise对象，可以像写同步方法一样来写异步
+        let age = await read('./b.txt');
+    }catch (e){console.log(e);
+    }
+    let school = {name,age};
+    console.log(school);
 };
 result();
 

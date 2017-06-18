@@ -22,13 +22,14 @@ http.createServer(function (req,res) {
         })
     }
 }).listen(8080);
+//有一个第三方模块，mime 专门处理这个问题 npm install mime
 function lookup(pathname) {
     let mime = {
         '.js':'application/javascript',
         '.css':'text/css',
         '.html':'text/html'
     };
-    return mime[pathname.match(/(\.(?:\w+))$/)[1]]
+    return mime[pathname.match(/\.(?:\w+)$/)[0]]
 }
 
 

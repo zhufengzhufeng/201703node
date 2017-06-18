@@ -4,11 +4,11 @@ function bindHtml(data) { //渲染列表数据
     data.forEach(item=>{
         str+= `
             <li class="list-group-item">
-                用户名 ${item.username} 密码 ${item.password}
+                用户名 ${decodeURIComponent(item.username)} 密码 ${item.password}
                 <button class="btn btn-danger pull-right btn-xs">删除</button>
                 <button class="btn btn-warning pull-right btn-xs">修改</button>
             </li>
-        `
+        `;
     });
     $('.list-group').html(str);
 }
@@ -32,3 +32,10 @@ $('#add').on('click',function () {
         bindHtml(data)
     })
 });
+//fetch 不兼容低版本
+/*
+fetch('/user').then((res)=>{
+    return res.json();
+}).then((data)=>{
+    console.log(data);
+});*/

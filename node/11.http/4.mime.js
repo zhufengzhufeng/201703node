@@ -1,8 +1,10 @@
 let http = require('http');
 let fs = require('fs');
 let mime = require('mime');
+let url = require('url');//专门用来处理路径
 http.createServer(function (req,res) {
-    let pathname = req.url;
+    //let pathname = req.url; //req.url 他是包括查询参数
+    let {pathname,query} = url.parse(req.url,true);
     if(pathname === '/'){
         res.setHeader('Content-Type','text/html;charset=utf-8');
         fs.createReadStream('index.html').pipe(res);

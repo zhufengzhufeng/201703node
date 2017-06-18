@@ -8,7 +8,7 @@ http.createServer(function (req,res) {
     if(pathname === '/'){
         res.setHeader('Content-Type','text/html;charset=utf-8');
         fs.createReadStream('index.html').pipe(res);
-    }
+    }  
     else{
         // /index.min.js
         fs.exists('.'+pathname,function (flag) { //判断文件是否存在

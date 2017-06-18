@@ -1,6 +1,8 @@
 //流的方式 来写拷贝
 //读64 写16
 let fs = require('fs');
+
+//1Bit位*8 = 1b /1个汉字三个字节 /1b*1024=1kb
 function pipe(source,target) {
     //1.需要有两个流 可读流rs和可写流ws
     let rs = fs.createReadStream(source,{highWaterMark:2});

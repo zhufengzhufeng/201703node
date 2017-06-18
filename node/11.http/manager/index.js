@@ -29,6 +29,6 @@ $('#add').on('click',function () {
             password:$('#password').val()
         }
     }).then(function (data) {
-        
+        bindHtml(data)
     })
 });

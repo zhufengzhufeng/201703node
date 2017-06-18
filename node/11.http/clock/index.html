@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="clock"></div>
+<script>
+    //1.创建ajax实例
+    let xhr = new XMLHttpRequest();
+    //默认访问/表示的是 locahost:8080
+    //ajax 同源策略，默认不能访问其他域下的数据
+    xhr.open('get','http://localhost:3000/clock',true);
+    //客户端限制服务端返回的结果
+    xhr.responseType = 'json';
+    xhr.onreadystatechange = function () {
+        if(xhr.readyState === 4 && xhr.status === 200){
+            //通过ajax请求数据 ，数据成功后会放置到xhr对象上
+            clock.innerHTML = xhr.response.timer//response可以接收对象类型
+        }
+    };
+    xhr.send();
+</script>
+</body>
+</html>

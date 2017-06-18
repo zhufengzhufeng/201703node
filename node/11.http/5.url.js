@@ -19,11 +19,4 @@ console.log(pathname,query);
  pathname: '/a',
  path: '/a?a=1&b=2',
  href: 'https://username:password@localhost:8080/a?a=1&b=2#top' }
-
-
-
-
-
-
-
  */

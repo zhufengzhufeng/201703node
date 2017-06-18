@@ -12,8 +12,13 @@ http.createServer(function (req,res) {
     else if(pathname === '/index.css'){
         res.setHeader('Content-Type','text/css;charset=utf-8');
         fs.createReadStream('index.css').pipe(res);
-    }else{
+    }
+    else if(pathname === '/index.js'){
+        res.setHeader('Content-Type','application/javascript;charset=utf-8');
+        fs.createReadStream('index.js').pipe(res);
+    }
+    else{
         res.statusCode = 404; //告诉浏览器此文件不存在 浏览器自动会报红
-        res.end();
+        res.end('NOT FOUND');
     }
 }).listen(8080);

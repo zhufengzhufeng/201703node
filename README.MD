@@ -12,3 +12,20 @@ http://idea.iteblog.com/key.php
 pop push shift unshift slice splice sort concat join reverse indexOf 
 
 ## map forEach find some filter reduce
+
+
+
+## vue-cli
+- node7.6+
+```
+npm install vue-cli -g
+```
+- 生成项目
+```
+vue init webpack vue-book
+```
+## base config可以配置别名
+
+new Vue({
+    template:'<>'
+})

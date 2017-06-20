@@ -16,3 +16,7 @@ export function getBook() {
 export function addBook(data) {
   return axios.post('/api/book',data)
 }
+
+export function removeBook(id) {
+  return axios.delete('/api/book?id='+id)
+}

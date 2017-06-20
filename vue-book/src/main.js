@@ -1,9 +1,11 @@
 
 import Vue from 'vue'
 //vue脚手架 帮我们将组件可以封装成.vue文件
-import App from './App'
+import App from './App.vue'
 import router from './router'
 import './assets/index.less';//公用样式
+import VueLazyLoad from 'vue-lazyload';
+Vue.use(VueLazyLoad);
 new Vue({
   el: '#app',
   router,

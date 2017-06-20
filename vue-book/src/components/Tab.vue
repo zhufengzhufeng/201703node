@@ -31,6 +31,7 @@
 <style scoped lang="less">
   nav{
     height: 60px;
+    background: #fff;
     display: flex;
     position: fixed;
     width: 100%;

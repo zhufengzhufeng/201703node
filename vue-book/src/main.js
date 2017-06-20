@@ -6,6 +6,8 @@ import router from './router'
 import './assets/index.less';//公用样式
 import VueLazyLoad from 'vue-lazyload';
 Vue.use(VueLazyLoad);
+import VueScroller  from 'vue-scroller';
+Vue.use(VueScroller);//引用这个组件后 也面会多一个全局组件 scroller
 new Vue({
   el: '#app',
   router,

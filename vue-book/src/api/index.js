@@ -12,3 +12,7 @@ export function getHot() {
 export function getBook() {
   return axios.get('/api/book')
 }
+//添加图书 需要传递一个data数据
+export function addBook(data) {
+  return axios.post('/api/book',data)
+}

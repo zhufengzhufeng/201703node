@@ -8,7 +8,10 @@
           <div>
             <h3>{{book.bookName}}</h3>
             <p>{{book.content}}</p>
-            <button @click="remove(book.id)">删除</button>
+            <p class="btn-list">
+              <router-link :to="{path:'/update/'+book.id}" tag="button">修改</router-link>
+              <button @click="remove(book.id)">删除</button>
+            </p>
           </div>
         </li>
       </ul>
@@ -49,11 +52,19 @@
     }
 </script>
 <style scoped lang="less">
+  .btn-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    button{
+      width: 60px;
+    }
+  }
 .list{
   li{
     display: flex;
     border-bottom: 1px solid #ccc;
-    img{width: 100px;height: 90px}
+    img{width: 100px;height: 90px;margin: 10px}
     div{
       h3{color: #666666;margin: 5px;}
       display: flex;

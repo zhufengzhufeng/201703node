@@ -20,3 +20,7 @@ export function addBook(data) {
 export function removeBook(id) {
   return axios.delete('/api/book?id='+id)
 }
+//获取一本书
+export function getOneBook(id) {
+  return axios.get('/api/book?id='+id)
+}

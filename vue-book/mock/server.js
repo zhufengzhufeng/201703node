@@ -36,9 +36,16 @@ http.createServer(function (req,res) {
   if(pathname === '/api/book'){
     switch (req.method){
       case 'GET':
-         read(function (data) {//data代表所有数据
-           res.end(JSON.stringify(data));
-         });
+        if(id){ //获取一本图书
+          read(function (books) {
+            let book = books.find(item=>item.id == id);
+            res.end(JSON.stringify(book));
+          })
+        }else{
+          read(function (data) {//data代表所有数据
+            res.end(JSON.stringify(data));
+          });
+        }
         break;
       case 'POST':
         //发送过来的请求体默认就是对象格式{}

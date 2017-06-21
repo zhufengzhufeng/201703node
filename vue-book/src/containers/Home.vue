@@ -54,9 +54,10 @@
     li{
       text-align: center;
       display: flex;
+      align-items: center;
       flex-direction: column;
       width: 33.333%;
-      img{width: 100%}
+      img{width: 80%;}
     }
   }
 </style>

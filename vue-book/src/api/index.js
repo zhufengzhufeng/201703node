@@ -24,3 +24,7 @@ export function removeBook(id) {
 export function getOneBook(id) {
   return axios.get('/api/book?id='+id)
 }
+//修改图书
+export function updateBook(id,data) {
+  return axios.put('/api/book?id='+id,data)
+}

@@ -15,15 +15,15 @@
           <input type="text" id="content" placeholder="请输入书的详细内容" v-model="book.content">
         </div>
         <div class="group">
-          <button @click="add">修改图书</button>
-          <button>返回</button>
+          <button @click="update">修改图书</button>
+          <router-link to="/list" tag="button">返回</router-link>
         </div>
       </div>
     </div>
 </template>
 <script>
     import MHeader from 'components/MHeader';
-    import {getOneBook} from 'api';
+    import {getOneBook,updateBook} from 'api';
     export default {
         data(){
             return {
@@ -36,17 +36,29 @@
         },
         created(){
             //id是当前路径的参数id
-          getOneBook(this.$route.params.id).then(res=>{
-              this.book = res.data;//将数据挂载视图上
-          });
+            this.getBook();
         },
         computed: {},
         components: {MHeader},
         methods: {
-            add(){
-
+            getBook(){
+              getOneBook(this.$route.params.id).then(res=>{
+                this.book = res.data;//将数据挂载视图上
+              });
+            },
+            update(){ //修改图书
+              //1.告诉服务端 需要改哪一本书 书的id /api/book?id=1  2.告诉更改的内容 book
+              updateBook(this.$route.params.id,this.book).then(()=>{
+                  this.$router.push('/list')
+              });
             }
+        },
+        activated(){ //如果keep-alive执行 依然会调用activated方法
+            this.getBook();
         }
+        //钩子方法 beforeCreate() created beforeMount Mounted beforeUpdate update beforeDestroy destroyed beforeEach > beforeEnter > beforeRouteEnter
+
+        //组件
     }
 </script>
 <style scoped lang="less">

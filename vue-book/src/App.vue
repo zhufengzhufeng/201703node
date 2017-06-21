@@ -1,11 +1,12 @@
 <template>
     <div>
       <!--保持缓存 缓存页面-->
-      <keep-alive>
+
         <transition name="trans" >
+          <keep-alive>
           <router-view class="view"></router-view>
+          </keep-alive>
         </transition>
-      </keep-alive>
       <tab></tab>
     </div>
 </template>

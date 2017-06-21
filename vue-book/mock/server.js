@@ -74,6 +74,29 @@ http.createServer(function (req,res) {
         });
         break;
       case 'PUT':
+        var str = '';
+        req.on('data',function (data) {
+          str+=data;
+        });
+        req.on('end',function () {
+          //book代表的是要修改成什么样
+          let book = JSON.parse(str);
+          read(function (books) {
+            books = books.map(item=>{
+                if(item.id == id){
+                  return book;
+                }
+                return item;
+            });
+            write(books,function () {
+                res.end(JSON.stringify(book));
+            });
+          })
+        });
+
+
+
+
         break;
     }
 

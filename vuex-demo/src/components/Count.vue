@@ -5,7 +5,7 @@
 </template>
 <script>
   //辅助函数
-    import {mapState,ma} from 'vuex';
+    import {mapState} from 'vuex';
     export default {
         data(){
             return {}

@@ -8,9 +8,11 @@ import VueLazyLoad from 'vue-lazyload';
 Vue.use(VueLazyLoad);
 import VueScroller  from 'vue-scroller';
 Vue.use(VueScroller);//引用这个组件后 也面会多一个全局组件 scroller
+import store from './store'
 new Vue({
   el: '#app',
   router,
+  store,
   // runtime + compiler  runtime only(不支持template写法)
   //template: '<div>hello world</div>',
   //run time only 是基于 .vue文件

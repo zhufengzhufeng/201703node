@@ -8,6 +8,7 @@
           <div>
             <h3>{{book.bookName}}</h3>
             <p>{{book.content}}</p>
+            <i class="iconfont icon-shoucang" @click="save(book)"></i>
             <p class="btn-list">
               <router-link :to="{path:'/update/'+book.id}" tag="button">修改</router-link>
               <button @click="remove(book.id)">删除</button>
@@ -19,7 +20,9 @@
     </div>
 </template>
 <script>
+    import {mapMutations} from 'vuex';
     import MHeader from 'components/MHeader';
+    import * as Types from '../store/mutation-types'
     import {getBook,removeBook} from 'api';
     export default {
         data(){
@@ -31,6 +34,11 @@
         computed: {},
         components: {MHeader},
         methods: {
+            ...mapMutations([Types.ADD_COLLECT]),
+            save(book){
+              this[Types.ADD_COLLECT](book);
+              this.$router.push('/collect');
+            },
             remove(id){
               removeBook(id).then(res=>{
                   //前台删除成功 将此项在页面中移除掉
@@ -84,4 +92,5 @@
     to{opacity: 1}
   }
 .top{margin-top:40px}
+  .icon-shoucang{font-size: 22px;color: orangered}
 </style>
